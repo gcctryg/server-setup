@@ -8,9 +8,7 @@ const lodgings = require("./lodgings.json")
 app.use(express.json())
 app.use(logger)
 
-app.use("*", function (req, res, next) {
-    res.status(404).send 
-})
+
 
 app.get("/lodgings", function (req, res, next) {
     console.log("  -- req.query:", req.query)
