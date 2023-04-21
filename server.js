@@ -58,6 +58,22 @@ app.post("/lodgings", function (req, res, next) {
     }
 })
 
+app.get("/lodgings/:id", function (req, res, next) {
+    console.log("  -- req.params:", req.params)
+    const id = req.params.id
+    if (lodgings[id]) {
+        res.status(200).send(lodgings[id])
+    } else {
+        next()
+    }
+})
+
+app.use("*", function (req, res, next) {
+    res.status(404).send({
+        err: `Requested URL doesn't exist: ${req.originalUrl}`
+    })
+})
+
 // app.post()
 // app.patch()
 // app.delete()
